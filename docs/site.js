@@ -155,6 +155,7 @@
   function money(n) { return '$' + n.toFixed(2); }
 
   function renderCart() {
+    if (window.ShopifyCart && window.ShopifyCart.isReady()) return;
     var c = getCart();
     var count = cartCount(c);
     document.querySelectorAll('.cart-count').forEach(function (el) {
@@ -188,6 +189,10 @@
   }
 
   function addToCart(item) {
+    if (window.ShopifyCart && window.ShopifyCart.isReady()) {
+      window.ShopifyCart.addToCart(item);
+      return;
+    }
     var c = getCart();
     var ex = c.find(function (i) { return i.id === item.id && i.variant === item.variant; });
     if (ex) ex.qty += item.qty; else c.push(item);
