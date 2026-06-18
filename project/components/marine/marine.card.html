@@ -1,0 +1,49 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Marine" subtitle="Go/Caution/Avoid recommendation + condition bars" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 28px; background: var(--bg-base); }
+  .grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: start; }
+  .bars { display: grid; gap: 18px; }
+  .pills { display: flex; gap: 10px; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Recommendation, ConditionBar } = window.SeaLegsDesignSystem_a9cfbb;
+  function Demo() {
+    return (
+      <div className="grid">
+        <div>
+          <Recommendation
+            verdict="caution"
+            window="Today · departs 7:00a"
+            title="Marginal early, easing by noon"
+            summary="2–3 ft at 5s with 15 kt SE. Fine in a 25-footer; choppy for smaller skiffs. Better window after 12p." />
+          <div className="pills">
+            <Recommendation verdict="go" variant="pill" />
+            <Recommendation verdict="caution" variant="pill" />
+            <Recommendation verdict="avoid" variant="pill" />
+          </div>
+        </div>
+        <div className="bars">
+          <ConditionBar label="Fishability" value={78} />
+          <ConditionBar label="Comfort" value={46} />
+          <ConditionBar label="Model agreement" value={88} tone="info" />
+          <ConditionBar label="Sea state" value={22} />
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

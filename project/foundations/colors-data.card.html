@@ -1,0 +1,21 @@
+<!-- @dsCard group="Colors" viewport="700x130" name="Ocean data layers" subtitle="Map overlay / data-viz hues — functional only" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--bg-base); }
+  .ramp { display:flex; gap:10px; }
+  .sw { flex:1; }
+  .chip { height: 48px; border-radius: var(--r-sm); }
+  .n { font: var(--fw-bold) 11px var(--font-ui); color: var(--text-base); margin-top:7px; }
+  .h { font: var(--fw-regular) 10px var(--font-mono); color: var(--text-tertiary); }
+</style></head>
+<body>
+<div class="ramp">
+  <div class="sw"><div class="chip" style="background:var(--data-warm)"></div><div class="n">SST high</div><div class="h">#FF7A45</div></div>
+  <div class="sw"><div class="chip" style="background:var(--data-mid)"></div><div class="n">mid</div><div class="h">#FFD24D</div></div>
+  <div class="sw"><div class="chip" style="background:var(--data-chl)"></div><div class="n">chlorophyll</div><div class="h">#57D98A</div></div>
+  <div class="sw"><div class="chip" style="background:var(--data-cool)"></div><div class="n">cool water</div><div class="h">#2FB6D9</div></div>
+  <div class="sw"><div class="chip" style="background:var(--data-deep)"></div><div class="n">depth</div><div class="h">#2A6FE0</div></div>
+</div>
+</body></html>

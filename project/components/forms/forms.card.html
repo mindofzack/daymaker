@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" viewport="700x180" name="Forms" subtitle="Pill search + text inputs with inset border" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 28px; background: var(--bg-base); }
+  .stack { display: grid; gap: 16px; max-width: 460px; }
+  .label { font: var(--fw-bold) 11px var(--font-ui); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Input } = window.SeaLegsDesignSystem_a9cfbb;
+  const Ico = ({ n }) => <i data-lucide={n} style={{ width: 18, height: 18, display:'inline-flex' }}></i>;
+  function Demo() {
+    return (
+      <div className="stack">
+        <div>
+          <div className="label">Pill search</div>
+          <Input shape="pill" placeholder="Search a spot, marina, or coordinates" iconLeft={<Ico n="search" />} />
+        </div>
+        <div>
+          <div className="label">Text field</div>
+          <Input shape="box" placeholder="Boat length (ft)" iconRight={<Ico n="ruler" />} />
+        </div>
+        <div>
+          <div className="label">Invalid</div>
+          <Input shape="box" defaultValue="–4" invalid iconRight={<Ico n="circle-alert" />} />
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+</script>
+</body>
+</html>

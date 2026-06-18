@@ -1,0 +1,30 @@
+/* ============================================================
+   DayMaker — Spacing tokens.  Base unit 8px, with the granular
+   small steps Spotify-style dark UIs lean on for dense lists.
+   ============================================================ */
+:root {
+  --sp-0:   0; /* @kind spacing */
+  --sp-px:  1px;
+  --sp-2:   2px;
+  --sp-3:   3px;
+  --sp-4:   4px;
+  --sp-6:   6px;
+  --sp-8:   8px;
+  --sp-10:  10px;
+  --sp-12:  12px;
+  --sp-14:  14px;
+  --sp-16:  16px;
+  --sp-20:  20px;
+  --sp-24:  24px;
+  --sp-32:  32px;
+  --sp-40:  40px;
+  --sp-48:  48px;
+  --sp-64:  64px;
+  --sp-80:  80px;
+
+  /* Layout */
+  --gutter:        16px;
+  --content-max:   1280px;
+  --sidebar-w:     240px;
+  --nowplaying-h:  72px;
+}

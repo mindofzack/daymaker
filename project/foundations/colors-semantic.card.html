@@ -1,0 +1,20 @@
+<!-- @dsCard group="Colors" viewport="700x170" name="Go / Caution / Avoid" subtitle="The semantic trio that doubles as the app's verdict language" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--bg-base); }
+  .row { display:grid; grid-template-columns: repeat(4,1fr); gap:14px; }
+  .card { border-radius: var(--r-md); padding: 14px; }
+  .dot { width: 28px; height: 28px; border-radius: var(--r-circle); display:flex; align-items:center; justify-content:center; font: var(--fw-black) 14px var(--font-ui); }
+  .lab { font: var(--fw-black) 13px var(--font-ui); letter-spacing: var(--ls-button); text-transform:uppercase; margin-top:10px; }
+  .h { font: var(--fw-regular) 10px var(--font-mono); color: var(--text-tertiary); margin-top:2px; }
+</style></head>
+<body>
+<div class="row">
+  <div class="card" style="background:var(--go-soft)"><div class="dot" style="background:var(--go);color:var(--text-on-accent)">↗</div><div class="lab" style="color:var(--go)">Go</div><div class="h">#16E0A6</div></div>
+  <div class="card" style="background:var(--caution-soft)"><div class="dot" style="background:var(--caution);color:#2A1700">!</div><div class="lab" style="color:var(--caution)">Caution</div><div class="h">#FFB13D</div></div>
+  <div class="card" style="background:var(--avoid-soft)"><div class="dot" style="background:var(--avoid);color:#2A0307">✕</div><div class="lab" style="color:var(--avoid)">Avoid</div><div class="h">#FF5A6A</div></div>
+  <div class="card" style="background:var(--info-soft)"><div class="dot" style="background:var(--info);color:#021428">i</div><div class="lab" style="color:var(--info)">Info</div><div class="h">#4FA8F5</div></div>
+</div>
+</body></html>

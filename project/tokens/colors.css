@@ -1,0 +1,73 @@
+/* ============================================================
+   DayMaker — Color tokens
+   Spotify-inspired "content-first darkness", tuned marine:
+   near-black surfaces with a faint cool cast, a singular aqua
+   brand accent, and a Go / Caution / Avoid semantic trio that
+   doubles as the app's core recommendation language.
+   ============================================================ */
+:root {
+  /* ---- Base surfaces (depth through shade, level 0 -> 4) ---- */
+  --bg-base:        #0C0F11;   /* deepest page background */
+  --surface-1:      #14181A;   /* sidebar, base cards */
+  --surface-2:      #191E20;   /* interactive surfaces, buttons */
+  --surface-3:      #222829;   /* elevated cards */
+  --surface-4:      #2A3133;   /* hover / raised card */
+  --surface-inset:  #0A0D0E;   /* recessed wells, inputs */
+
+  /* ---- Neutral ramp (raw) ---- */
+  --ink-900: #0B0F0E;
+  --ink-800: #14181A;
+  --ink-700: #222829;
+  --ink-600: #2B3133;
+  --ink-500: #3A4143;
+  --ink-400: #565E60;
+  --ink-300: #6E7779;
+  --ink-200: #A7B0B2;
+  --ink-100: #CDD4D5;
+  --ink-000: #FDFEFE;
+
+  /* ---- Text roles ---- */
+  --text-base:        #FFFFFF;   /* primary text */
+  --text-bright:      #FDFEFE;   /* maximum emphasis */
+  --text-secondary:   #A7B0B2;   /* muted labels, inactive nav */
+  --text-tertiary:    #6E7779;   /* captions, fine print */
+  --text-disabled:    #565E60;
+  --text-on-accent:   #06231B;   /* text/icon on aqua fills */
+
+  /* ---- Brand accent (singular, functional only) ---- */
+  --accent:           #16E0A6;   /* DayMaker aqua — CTAs, play/go, active */
+  --accent-bright:    #3CF0BD;   /* hover lift */
+  --accent-press:     #10BD8B;   /* pressed */
+  --accent-border:    #14C795;
+  --accent-soft:      rgba(22,224,166,0.14);  /* tint wash */
+  --accent-soft-strong: rgba(22,224,166,0.24);
+
+  /* ---- Marine semantic: Go / Caution / Avoid ---- */
+  --go:               #16E0A6;   /* Go  (== accent, reinforces brand) */
+  --go-soft:          rgba(22,224,166,0.14);
+  --caution:          #FFB13D;   /* Caution — warning amber */
+  --caution-soft:     rgba(255,177,61,0.15);
+  --avoid:            #FF5A6A;   /* Avoid — negative red */
+  --avoid-soft:       rgba(255,90,106,0.15);
+  --info:             #4FA8F5;   /* announcement / info blue */
+  --info-soft:        rgba(79,168,245,0.15);
+
+  /* ---- Ocean data layers (map overlays / data-viz only) ---- */
+  --data-warm:        #FF7A45;   /* SST high / thermal */
+  --data-mid:         #FFD24D;   /* mid ramp */
+  --data-chl:         #57D98A;   /* chlorophyll */
+  --data-cool:        #2FB6D9;   /* cool water */
+  --data-deep:        #2A6FE0;   /* depth / bathymetry */
+
+  /* ---- Borders & dividers ---- */
+  --border:           #2B3133;   /* default hairline on dark */
+  --border-strong:    #3A4143;   /* outlined controls */
+  --border-muted:     #4A5052;   /* muted links, dividers */
+  --border-focus:     #16E0A6;
+
+  /* ---- Semantic aliases (surface roles) ---- */
+  --surface-card:     var(--surface-1);
+  --surface-raised:   var(--surface-3);
+  --surface-button:   var(--surface-2);
+  --surface-page:     var(--bg-base);
+}

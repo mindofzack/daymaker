@@ -1,0 +1,47 @@
+/* ============================================================
+   DayMaker — base element defaults + small utilities.
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg-base);
+  color: var(--text-base);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'ss01';
+}
+
+::selection { background: var(--accent-soft-strong); color: var(--text-bright); }
+
+a { color: inherit; text-decoration: none; }
+
+:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+/* Numeric / tabular readouts (wind, waves, coords) */
+.sl-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+.sl-mono { font-family: var(--font-mono); }
+
+/* Eyebrow / overline label */
+.sl-eyebrow {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* Thin scrollbar for dark panels */
+.sl-scroll::-webkit-scrollbar { width: 10px; height: 10px; }
+.sl-scroll::-webkit-scrollbar-thumb {
+  background: var(--ink-500); border-radius: 999px;
+  border: 3px solid transparent; background-clip: content-box;
+}
+.sl-scroll::-webkit-scrollbar-thumb:hover { background: var(--ink-400); }
+.sl-scroll::-webkit-scrollbar-track { background: transparent; }

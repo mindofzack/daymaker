@@ -1,0 +1,24 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Brand accent" subtitle="DayMaker aqua — the singular functional accent" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--bg-base); display:flex; gap:24px; align-items:center; }
+  .hero { width: 200px; height: 100px; border-radius: var(--r-md); background: var(--accent);
+          display:flex; align-items:flex-end; padding: 12px; box-shadow: var(--shadow-accent-glow); }
+  .hero .n { font: var(--fw-black) 16px var(--font-ui); color: var(--text-on-accent); }
+  .hero .h { font: var(--fw-bold) 12px var(--font-mono); color: var(--text-on-accent); opacity:.8; margin-left:auto; }
+  .ramp { display:flex; gap:10px; }
+  .sw { width: 92px; }
+  .chip { height: 56px; border-radius: var(--r-sm); border:1px solid var(--border); }
+  .n2 { font: var(--fw-bold) 11px var(--font-ui); color: var(--text-base); margin-top:6px; }
+  .h2 { font: var(--fw-regular) 10px var(--font-mono); color: var(--text-tertiary); }
+</style></head>
+<body>
+  <div class="hero"><span class="n">accent</span><span class="h">#16E0A6</span></div>
+  <div class="ramp">
+    <div class="sw"><div class="chip" style="background:var(--accent-bright)"></div><div class="n2">bright</div><div class="h2">hover · #3CF0BD</div></div>
+    <div class="sw"><div class="chip" style="background:var(--accent-press)"></div><div class="n2">press</div><div class="h2">#10BD8B</div></div>
+    <div class="sw"><div class="chip" style="background:var(--accent-soft)"></div><div class="n2">soft</div><div class="h2">14% tint</div></div>
+  </div>
+</body></html>

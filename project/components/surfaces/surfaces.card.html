@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" viewport="700x260" name="Surfaces" subtitle="Cards — flat, elevated, media, hoverable" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 28px; background: var(--bg-base); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .title { font: var(--fw-bold) 16px var(--font-ui); color: var(--text-base); }
+  .sub { font: var(--fw-regular) 13px var(--font-ui); color: var(--text-secondary); margin-top: 2px; }
+  .thumb { width: 100%; height: 100%; background:
+     radial-gradient(120% 120% at 20% 10%, #16e0a6 0%, #0e7f63 35%, #0a2f3a 70%, #0a1418 100%); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Card } = window.SeaLegsDesignSystem_a9cfbb;
+  function Demo() {
+    return (
+      <div className="grid">
+        <Card>
+          <div className="title">Flat surface</div>
+          <div className="sub">Settings groups, list rows.</div>
+        </Card>
+        <Card elevated>
+          <div className="title">Elevated</div>
+          <div className="sub">Resting drop shadow for menus + dialogs.</div>
+        </Card>
+        <Card hoverable media={<div className="thumb" />}>
+          <div className="title">Marlin Canyon</div>
+          <div className="sub">Hover to lift · 38 nm SE</div>
+        </Card>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

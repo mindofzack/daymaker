@@ -1,0 +1,60 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Controls" subtitle="Buttons, icon buttons, switch, segmented control" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 28px; background: var(--bg-base); }
+  .row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+  .row:last-child { margin-bottom: 0; }
+  .cap { font: var(--fw-bold) 11px var(--font-ui); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-tertiary); width: 92px; flex: none; }
+  svg.lucide { width: 18px; height: 18px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Button, IconButton, Switch, SegmentedControl } = window.SeaLegsDesignSystem_a9cfbb;
+  const Ico = ({ n, s }) => <i data-lucide={n} style={{ width: s||18, height: s||18, display:'inline-flex' }}></i>;
+  function Demo() {
+    const [tab, setTab] = React.useState('Weather');
+    const [on, setOn] = React.useState(true);
+    return (
+      <div>
+        <div className="row"><span className="cap">Variants</span>
+          <Button variant="primary" uppercase iconLeft={<Ico n="navigation" />}>Plan a trip</Button>
+          <Button variant="secondary">Save spot</Button>
+          <Button variant="outline">Share</Button>
+          <Button variant="ghost">Cancel</Button>
+          <Button variant="danger" uppercase>Avoid</Button>
+        </div>
+        <div className="row"><span className="cap">Sizes</span>
+          <Button size="sm" variant="secondary">Small</Button>
+          <Button size="md" variant="secondary">Medium</Button>
+          <Button size="lg" variant="primary">Large CTA</Button>
+          <Button variant="primary" disabled>Disabled</Button>
+        </div>
+        <div className="row"><span className="cap">Icon btn</span>
+          <IconButton variant="accent" size="lg" label="Play"><Ico n="play" s={22} /></IconButton>
+          <IconButton variant="surface" label="Locate"><Ico n="locate-fixed" /></IconButton>
+          <IconButton variant="outline" label="More"><Ico n="more-horizontal" /></IconButton>
+          <IconButton variant="ghost" label="Bell"><Ico n="bell" /></IconButton>
+        </div>
+        <div className="row"><span className="cap">Segmented</span>
+          <SegmentedControl options={['Weather','Fishing','Map']} value={tab} onChange={setTab} />
+          <Switch checked={on} onChange={setOn} label="Alerts" />
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+</script>
+</body>
+</html>

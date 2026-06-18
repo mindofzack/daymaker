@@ -1,0 +1,61 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Display" subtitle="Badges, tags, avatars, metrics" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 28px; background: var(--bg-base); }
+  .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  .row:last-child { margin-bottom: 0; }
+  .cap { font: var(--fw-bold) 11px var(--font-ui); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-tertiary); width: 78px; flex: none; }
+  .metrics { display: flex; gap: 40px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Badge, Tag, Avatar, Metric } = window.SeaLegsDesignSystem_a9cfbb;
+  const Ico = ({ n }) => <i data-lucide={n} style={{ width: 14, height: 14, display:'inline-flex' }}></i>;
+  function Demo() {
+    const [sel, setSel] = React.useState('Offshore');
+    return (
+      <div>
+        <div className="row"><span className="cap">Badges</span>
+          <Badge tone="go">Optimal</Badge>
+          <Badge tone="caution">Building</Badge>
+          <Badge tone="avoid">Small craft</Badge>
+          <Badge tone="accent">Pay-per-report</Badge>
+          <Badge tone="info">New</Badge>
+          <Badge tone="neutral">Offshore</Badge>
+        </div>
+        <div className="row"><span className="cap">Tags</span>
+          {['Offshore','Inshore','Tuna','Marina','Reef'].map(t =>
+            <Tag key={t} selected={sel===t} onClick={()=>setSel(t)}>{t}</Tag>)}
+          <Tag removable onRemove={()=>{}}>Mahi</Tag>
+        </div>
+        <div className="row"><span className="cap">Avatars</span>
+          <Avatar name="Marlin Bay" size={32} />
+          <Avatar name="Ana Reyes" size={40} ring />
+          <Avatar name="Cap Diaz" size={48} />
+        </div>
+        <div className="row"><span className="cap">Metrics</span>
+          <div className="metrics">
+            <Metric label="Wind" value="12" unit="kt" sub="SE · gusts 18" />
+            <Metric label="Wave" value="2.4" unit="ft" trend={{dir:'up', value:'+0.6'}} tone="caution" />
+            <Metric label="SST" value="74" unit="°F" tone="accent" size="lg" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+</script>
+</body>
+</html>
