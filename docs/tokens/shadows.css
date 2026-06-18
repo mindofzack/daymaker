@@ -1,0 +1,24 @@
+/* ============================================================
+   DayMaker — Elevation & shadow tokens.
+   Heavy shadows for a dark theme: light shadows are invisible on
+   near-black. Inset border-shadow gives inputs a recessed feel.
+   ============================================================ */
+:root {
+  /* Drop shadows */
+  --shadow-card:    0 8px 8px rgba(0,0,0,0.30);                 /* level 2: cards, dropdowns */
+  --shadow-raised:  0 12px 24px rgba(0,0,0,0.40);              /* hover lift */
+  --shadow-dialog:  0 8px 24px rgba(0,0,0,0.50);               /* level 3: modals, menus */
+  --shadow-sheet:   0 -8px 32px rgba(0,0,0,0.55);              /* bottom sheets */
+
+  /* Inset / border-shadow combos */
+  --shadow-inset-input: inset 0 0 0 1px var(--border-strong);  /* recessed input border */
+  --shadow-focus:   0 0 0 2px var(--bg-base), 0 0 0 4px var(--accent); /* focus ring */
+  --shadow-accent-glow: 0 8px 28px rgba(22,224,166,0.30);      /* aqua CTA glow */
+
+  /* Motion */
+  --ease-standard:  cubic-bezier(0.3, 0, 0, 1); /* @kind other */
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --dur-fast:       120ms; /* @kind other */
+  --dur-base:       200ms; /* @kind other */
+  --dur-slow:       320ms; /* @kind other */
+}

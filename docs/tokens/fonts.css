@@ -1,0 +1,10 @@
+/* ============================================================
+   DayMaker — Webfonts
+   Circular (Spotify's proprietary face) is unavailable. We use
+   FIGTREE as the closest free geometric-humanist substitute for
+   the UI/Title family, and JETBRAINS MONO for numeric / data /
+   API surfaces (coordinates, wind speed, wave height, code).
+   --> SUBSTITUTION FLAGGED: replace with licensed Circular if owned.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');

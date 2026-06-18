@@ -1,0 +1,18 @@
+/* ============================================================
+   DayMaker — Radius tokens. Pill-and-circle geometry: full pills
+   for buttons/search, circles for play/avatars, gentle radii
+   for cards. Square corners break the identity.
+   ============================================================ */
+:root {
+  --r-badge:    2px;
+  --r-xs:       4px;   /* inputs, small elements */
+  --r-sm:       6px;   /* album/card art */
+  --r-md:       8px;   /* sections, dialogs */
+  --r-lg:       12px;
+  --r-xl:       16px;
+  --r-2xl:      20px;  /* panels, sheets */
+  --r-card:     12px;  /* default card */
+  --r-pill:     500px; /* primary buttons, search */
+  --r-full:     9999px;/* nav pills, chips */
+  --r-circle:   50%;   /* play, avatars, icon buttons */
+}

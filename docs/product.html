@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Electrolytes + Caffeine — DayMaker</title>
+<meta name="description" content="DayMaker Electrolytes + Caffeine — Fruit Punch. Premium hydration formula with 150mg natural caffeine. Sugar-free, clean, no BS. $30." />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  .pdp { padding-top: 48px; }
+  .pdp__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  @media (max-width: 900px){ .pdp__grid { grid-template-columns: 1fr; } }
+  .gallery { position: sticky; top: 92px; display: grid; gap: 14px; }
+  .gallery__main { position: relative; border-radius: var(--r-2xl); overflow: hidden; aspect-ratio: 4/5;
+    background: var(--surface-1); box-shadow: inset 0 0 0 1px var(--border); }
+  .gallery__main img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-spring); }
+  .gallery__main:hover img { transform: scale(1.04); }
+  .gallery__main .glow-orb { width: 360px; height: 360px; background: var(--aqua); opacity: .14; top: -100px; right: -80px; }
+  .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .thumbs button { border: none; padding: 0; cursor: pointer; aspect-ratio: 1; border-radius: var(--r-md); overflow: hidden;
+    background: var(--surface-1); box-shadow: inset 0 0 0 1px var(--border); transition: box-shadow .2s; }
+  .thumbs button.active { box-shadow: inset 0 0 0 2px var(--aqua); }
+  .thumbs img { width: 100%; height: 100%; object-fit: cover; }
+
+  .buy h1 { font-family: var(--font-title); font-weight: 900; letter-spacing: -0.03em; font-size: clamp(34px, 5vw, 56px); line-height: 1; margin: 14px 0 0; }
+  .price-row { display: flex; align-items: baseline; gap: 14px; margin-top: 20px; }
+  .price { font-family: var(--font-title); font-weight: 900; font-size: 40px; }
+  .price s { font-size: 22px; color: var(--text-tertiary); font-weight: 600; }
+  .stars-row { display: flex; align-items: center; gap: 10px; margin-top: 12px; color: var(--text-secondary); font-size: 14px; }
+  .stars-row .s { color: var(--punch); letter-spacing: 2px; }
+  .micro-benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 26px 0; }
+  .micro-benefits .mb { padding: 16px; border-radius: var(--r-lg); background: var(--surface-1); box-shadow: inset 0 0 0 1px var(--border); text-align: center; }
+  .micro-benefits .mb b { display: block; font-size: 14px; margin-bottom: 4px; }
+  .micro-benefits .mb span { font-size: 12px; color: var(--text-tertiary); line-height: 1.4; }
+  .buy-actions { display: flex; gap: 12px; margin-top: 8px; }
+  .stock { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 13px; font-weight: 700; color: var(--aqua); }
+  .stock .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--aqua); box-shadow: 0 0 8px var(--aqua); animation: pulse 1.8s infinite; }
+  @keyframes pulse { 50% { opacity: .35; } }
+  .assure { display: grid; gap: 10px; margin-top: 22px; }
+  .assure div { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-secondary); }
+  .assure svg { width: 18px; height: 18px; color: var(--aqua); flex: none; }
+
+  .ingredients { display: grid; gap: 14px; }
+  .ing { display: grid; grid-template-columns: 130px 1fr; gap: 20px; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border); }
+  @media (max-width: 560px){ .ing { grid-template-columns: 1fr; gap: 6px; } }
+  .ing .amt { font-family: var(--font-title); font-weight: 900; font-size: 26px; letter-spacing: -0.02em; }
+  .ing .amt .u { font-size: .5em; color: var(--aqua); }
+  .ing .bar { height: 6px; border-radius: 99px; background: var(--surface-3); overflow: hidden; margin-top: 10px; }
+  .ing .bar i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--teal-pack), var(--aqua)); width: 0; transition: width 1s var(--ease-spring); }
+  .ing.in .bar i { width: var(--w); }
+  .ing h4 { margin: 0; font-size: 17px; font-weight: 800; }
+  .ing p { margin: 4px 0 0; font-size: 14px; color: var(--text-secondary); }
+
+  .compare { width: 100%; border-collapse: collapse; }
+  .compare th, .compare td { padding: 18px 16px; text-align: center; border-bottom: 1px solid var(--border); }
+  .compare th:first-child, .compare td:first-child { text-align: left; font-weight: 700; color: var(--text-secondary); }
+  .compare thead th { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-tertiary); }
+  .compare .us { background: var(--accent-soft); color: var(--aqua); font-weight: 800; border-radius: 8px; }
+  .compare .yes { color: var(--aqua); } .compare .no { color: var(--text-tertiary); }
+  .compare thead th.us-h { color: var(--aqua); }
+</style>
+</head>
+<body>
+<div class="scroll-progress"></div>
+<div class="announce"><div class="track"><span><b>Free shipping over $45</b><b>Fruit Punch · sugar-free</b><b>150mg natural caffeine</b><b>Made in the USA</b></span><span aria-hidden="true"><b>Free shipping over $45</b><b>Fruit Punch · sugar-free</b><b>150mg natural caffeine</b><b>Made in the USA</b></span></div></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="nav__logo" href="index.html"><img src="assets/logo-circle.png" alt="DayMaker" /></a>
+    <nav class="nav__links">
+      <a href="index.html">Home</a>
+      <a href="product.html" class="active">Electrolytes</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">Our Story</a>
+      <a href="affiliates.html">Affiliates</a>
+    </nav>
+    <div class="nav__right">
+      <button class="nav__icon" data-open-cart aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></button>
+      <a href="#buyBox" class="btn btn--primary btn--sm">Buy now</a>
+      <button class="nav__icon nav__burger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<!-- PDP -->
+<section class="pdp">
+  <div class="wrap">
+    <div class="pdp__grid">
+      <!-- gallery -->
+      <div class="gallery">
+        <div class="gallery__main">
+          <div class="glow-orb"></div>
+          <img id="galMain" src="assets/product-scoop.png" alt="DayMaker Electrolytes + Caffeine" />
+        </div>
+        <div class="thumbs">
+          <button class="active" data-src="assets/product-scoop.png"><img src="assets/product-scoop.png" alt="" /></button>
+          <button data-src="assets/product-tub.jpg"><img src="assets/product-tub.jpg" alt="" /></button>
+          <button data-src="assets/hero-lifestyle.jpg"><img src="assets/hero-lifestyle.jpg" alt="" /></button>
+          <button data-src="assets/icon-hydration.png"><img src="assets/icon-hydration.png" alt="" /></button>
+        </div>
+      </div>
+
+      <!-- buy box -->
+      <div class="buy" id="buyBox">
+        <span class="tag-pill punch">Fruit Punch · Bestseller</span>
+        <h1>Electrolytes + Caffeine</h1>
+        <div class="stars-row"><span class="s">★★★★★</span> 4.9 · 248 reviews</div>
+        <div class="price-row"><span class="price">$30</span><s>$38</s><span class="tag-pill aqua">Save 21%</span></div>
+        <p class="lede" style="margin-top:18px">A premium hydration formula that replenishes essential electrolytes while delivering clean, natural energy — so you stay balanced and perform at your best all day.</p>
+
+        <div class="micro-benefits">
+          <div class="mb"><b>Focus Boost</b><span>Sharper mental clarity</span></div>
+          <div class="mb"><b>Endurance</b><span>Sustained stamina</span></div>
+          <div class="mb"><b>Fast Recovery</b><span>Replenishes fast</span></div>
+        </div>
+
+        <div class="stock"><span class="dot"></span>Only 21 left in stock — selling fast</div>
+
+        <div class="buy-actions" style="margin-top:18px">
+          <div class="stepper" data-stepper><button data-minus aria-label="Decrease">–</button><span data-val>1</span><button data-plus aria-label="Increase">+</button></div>
+          <button class="btn btn--primary btn--block" data-add-to-cart data-id="electrolytes" data-name="Electrolytes + Caffeine" data-price="30" data-img="assets/product-tub.jpg" data-qty-target=".stepper [data-val]">Add to cart</button>
+        </div>
+        <button class="btn btn--punch btn--block" style="margin-top:12px">Buy it now</button>
+
+        <div class="assure">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Sugar-free · clean ingredients · no BS</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Free US shipping over $45 · ships in 1–2 days</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3a9 9 0 1 0 9 9"/></svg>30-day money-back guarantee</div>
+        </div>
+        <div class="pay" style="margin-top:20px"><span>VISA</span><span>MC</span><span>AMEX</span><span>PAYPAL</span><span>APPLE PAY</span><span>SHOP PAY</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" style="--spd:26s">
+  <div class="marquee__track"><span class="marquee__item">Detox to Retox<span class="dot"></span><span class="muted">Stay balanced</span><span class="dot"></span>Stay energized<span class="dot"></span></span><span class="marquee__item" aria-hidden="true">Detox to Retox<span class="dot"></span><span class="muted">Stay balanced</span><span class="dot"></span>Stay energized<span class="dot"></span></span></div>
+</div>
+
+<!-- INGREDIENTS -->
+<section class="section">
+  <div class="wrap">
+    <div class="split">
+      <div data-reveal="left" style="position:sticky;top:100px">
+        <span class="eyebrow">What's inside</span>
+        <h2 class="section-title" style="font-size:clamp(28px,3.6vw,46px)">Clean, functional<br>and precisely dosed.</h2>
+        <p class="lede" style="margin-top:18px">No sugar. No artificial fillers. Just the minerals and clean caffeine your body actually uses — backed by real amounts you can read off the label.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px">
+          <span class="chip">Sugar-free</span><span class="chip">Pink Himalayan salt</span><span class="chip">Green tea extract</span><span class="chip">Made in USA</span>
+        </div>
+      </div>
+      <div class="ingredients" data-reveal="right" data-faq-group>
+        <div class="ing" data-reveal style="--w:32%"><div><div class="amt"><span data-count="80">0</span><span class="u">mg</span></div><div class="bar"><i></i></div></div><div><h4>Magnesium (Glycinate)</h4><p>Supports muscle recovery, nerve function, and electrolyte balance.</p></div></div>
+        <div class="ing" data-reveal style="--w:100%"><div><div class="amt"><span data-count="1000">0</span><span class="u">mg</span></div><div class="bar"><i></i></div></div><div><h4>Sodium (Pink Himalayan Salt)</h4><p>Maintains fluid balance and drives rapid hydration.</p></div></div>
+        <div class="ing" data-reveal style="--w:48%"><div><div class="amt"><span data-count="225">0</span><span class="u">mg</span></div><div class="bar"><i></i></div></div><div><h4>Potassium (Chloride)</h4><p>Supports healthy muscle function and nerve signaling.</p></div></div>
+        <div class="ing" data-reveal style="--w:68%"><div><div class="amt"><span data-count="150">0</span><span class="u">mg</span></div><div class="bar"><i></i></div></div><div><h4>Natural Caffeine (Coffee Bean)</h4><p>Clean energy and improved focus — without the jitters or crash.</p></div></div>
+        <div class="ing" data-reveal style="--w:40%"><div><div class="amt" style="font-size:18px">Green Tea</div><div class="bar"><i></i></div></div><div><h4>Green Tea Extract</h4><p>Antioxidant support and a gentle, sustained energy boost.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="section section--tight" style="background:var(--surface-1);border-block:1px solid var(--border)">
+  <div class="wrap">
+    <div class="section-head center" style="margin-bottom:36px">
+      <span class="eyebrow" style="justify-content:center" data-reveal>One scoop replaces three</span>
+      <h2 class="section-title" data-reveal style="--d:80ms">Why carry a cabinet?</h2>
+    </div>
+    <div class="card" style="padding:8px 24px;overflow-x:auto" data-reveal="scale">
+      <table class="compare">
+        <thead><tr><th></th><th>Sports drink</th><th>Energy drink</th><th>Coffee</th><th class="us-h">DayMaker</th></tr></thead>
+        <tbody>
+          <tr><td>Electrolytes</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td><td class="us">✓</td></tr>
+          <tr><td>Clean caffeine</td><td class="no">✕</td><td class="no">✕</td><td class="yes">✓</td><td class="us">✓</td></tr>
+          <tr><td>Sugar-free</td><td class="no">✕</td><td class="no">✕</td><td class="yes">✓</td><td class="us">✓</td></tr>
+          <tr><td>No jitters / crash</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td><td class="us">✓</td></tr>
+          <tr><td>Recovery support</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td><td class="us">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap" style="max-width:840px">
+    <div class="section-head center" style="margin-bottom:24px">
+      <span class="eyebrow" style="justify-content:center" data-reveal>Common questions</span>
+      <h2 class="section-title" data-reveal style="--d:80ms">Everything you need to know.</h2>
+    </div>
+    <div data-faq-group>
+      <div class="faq" data-faq data-reveal><button class="faq__q">What is DayMaker Electrolytes + Caffeine?<span class="ic">+</span></button><div class="faq__a"><p>It's a premium hydration formula that replenishes electrolytes and provides 150mg of natural caffeine for clean, crash-free energy.</p></div></div>
+      <div class="faq" data-faq data-reveal><button class="faq__q">When should I take it?<span class="ic">+</span></button><div class="faq__a"><p>Ideal in the morning, before workouts, during long workdays, or anytime you need hydration and energy.</p></div></div>
+      <div class="faq" data-faq data-reveal><button class="faq__q">Is it safe to take daily?<span class="ic">+</span></button><div class="faq__a"><p>Yes — DayMaker uses natural ingredients. Just don't exceed the recommended daily serving.</p></div></div>
+      <div class="faq" data-faq data-reveal><button class="faq__q">Does it contain sugar?<span class="ic">+</span></button><div class="faq__a"><p>No. DayMaker Electrolytes + Caffeine is sugar-free and designed for clean hydration.</p></div></div>
+      <div class="faq" data-faq data-reveal><button class="faq__q">Can I mix it with other drinks?<span class="ic">+</span></button><div class="faq__a"><p>Yes! Mix with water or your favorite beverage for hydration and energy.</p></div></div>
+      <div class="faq" data-faq data-reveal><button class="faq__q">How long until I feel the effects?<span class="ic">+</span></button><div class="faq__a"><p>Most people feel hydration immediately and a gentle energy boost within 15–30 minutes.</p></div></div>
+      <div class="faq" data-faq data-reveal><button class="faq__q">Who is this product for?<span class="ic">+</span></button><div class="faq__a"><p>Athletes, busy professionals, travelers, or anyone needing hydration and clean energy support.</p></div></div>
+      <div class="faq" data-faq data-reveal><button class="faq__q">Where is it made?<span class="ic">+</span></button><div class="faq__a"><p>Proudly made in the USA with high-quality ingredients.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <img class="footer__logo" src="assets/logo-circle.png" alt="DayMaker" />
+        <p class="muted">Hydration meets energy. One clean scoop to keep you balanced, focused, and moving.</p>
+        <div class="socials" style="margin-top:18px">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div><h4>Shop</h4><ul><li><a href="product.html">Electrolytes + Caffeine</a></li><li><a href="shop.html">Performance Hat</a></li><li><a href="shop.html">Bundles</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="about.html">Our Story</a></li><li><a href="affiliates.html">Become an Affiliate</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><h4>Newsletter</h4><p class="muted" style="max-width:none">Get drops and members-only deals.</p><form class="footer__news" onsubmit="return false"><input type="email" placeholder="you@email.com" aria-label="Email" /><button class="nav__icon" style="background:var(--aqua);color:var(--text-on-accent)" aria-label="Subscribe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form></div>
+    </div>
+    <div class="footer__bottom"><small>© 2026 DayMaker. All rights reserved.</small><div class="pay"><span>VISA</span><span>MC</span><span>AMEX</span><span>PAYPAL</span></div></div>
+  </div>
+</footer>
+
+<!-- STICKY BUY BAR -->
+<div class="sticky-buy" id="stickyBuy">
+  <div class="wrap">
+    <img src="assets/product-tub.jpg" alt="" />
+    <div><div class="nm">Electrolytes + Caffeine</div><div class="pr">Fruit Punch · $30</div></div>
+    <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
+      <span class="stars-row" style="margin:0"><span class="s">★★★★★</span></span>
+      <button class="btn btn--primary" data-add-to-cart data-id="electrolytes" data-name="Electrolytes + Caffeine" data-price="30" data-img="assets/product-tub.jpg" data-qty="1">Add to cart — $30</button>
+    </div>
+  </div>
+</div>
+
+<!-- CART + MENU + TOAST -->
+<div class="scrim" id="scrim" data-close-cart></div>
+<aside class="drawer" id="cartDrawer" aria-label="Cart">
+  <div class="drawer__head"><h3>Your cart</h3><button class="nav__icon" data-close-cart aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <div class="drawer__body sl-scroll" id="cartBody"></div>
+  <div class="drawer__foot"><div style="display:flex;justify-content:space-between;margin-bottom:14px"><span style="color:var(--text-secondary)">Subtotal</span><b id="cartTotal" style="font-size:18px">$0.00</b></div><button class="btn btn--primary btn--block">Checkout</button></div>
+</aside>
+<div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="product.html">Electrolytes</a><a href="shop.html">Shop</a><a href="about.html">Our Story</a><a href="affiliates.html">Affiliates</a></div>
+<div class="toast" id="toast"><span class="ok">✓</span><span class="toast__msg">Added to cart</span></div>
+
+<script src="site.js"></script>
+<script>
+  document.querySelectorAll('.thumbs button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.thumbs button').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      document.getElementById('galMain').src = b.getAttribute('data-src');
+    });
+  });
+</script>
+</body>
+</html>
