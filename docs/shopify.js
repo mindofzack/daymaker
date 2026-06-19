@@ -12,17 +12,17 @@
      token    : Shopify Admin → Apps → Develop apps →
                 create/open app → Storefront API → install →
                 copy "Storefront API access token"            */
-  var STORE_DOMAIN       = 'YOUR-STORE.myshopify.com';
-  var STOREFRONT_TOKEN   = 'YOUR-STOREFRONT-ACCESS-TOKEN';
+  var STORE_DOMAIN       = 'daymaker-7110.myshopify.com';
+  var STOREFRONT_TOKEN   = 'atkn_72613ee183996e7a3c7fe48d180dceb0070805219ebce78b7363dfc51dd05873';
 
   /* ─── CONFIGURE 2: product variant IDs ─────────────────────
      Shopify Admin → Products → click product → click a variant
      → the ID is the last number in the URL.
      Format: gid://shopify/ProductVariant/  +  that number.   */
   var VARIANT_IDS = {
-    'electrolytes': 'gid://shopify/ProductVariant/REPLACE_ME',
+    'electrolytes': 'gid://shopify/ProductVariant/52682588127508',
     'hat':          'gid://shopify/ProductVariant/REPLACE_ME',
-    'sub':          'gid://shopify/ProductVariant/REPLACE_ME',
+    'sub':          'gid://shopify/ProductVariant/52682593141012',
     'bundle':       'gid://shopify/ProductVariant/REPLACE_ME',
   };
   /* ─────────────────────────────────────────────────────────── */
