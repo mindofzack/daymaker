@@ -182,30 +182,6 @@
           <p style="color:var(--text-secondary);font-size:14px;margin:0">Thanks for applying. We'll review your submission and reach out within 3–5 business days.</p>
         </div>
       </form>
-      <script>
-        document.getElementById('affiliateForm').addEventListener('submit', function(e) {
-          e.preventDefault();
-          var btn = document.getElementById('affiliateSubmit');
-          btn.textContent = 'Sending…';
-          btn.disabled = true;
-          fetch('https://formspree.io/f/mojodnnz', {
-            method: 'POST',
-            body: new FormData(this),
-            headers: { 'Accept': 'application/json' }
-          }).then(function(r) {
-            if (r.ok) {
-              document.getElementById('affiliateFields').style.display = 'none';
-              document.getElementById('affiliateSuccess').style.display = 'block';
-            } else {
-              btn.textContent = 'Try again';
-              btn.disabled = false;
-            }
-          }).catch(function() {
-            btn.textContent = 'Try again';
-            btn.disabled = false;
-          });
-        });
-      </script>
     </div>
   </div>
 </section>
@@ -261,5 +237,29 @@
 <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
 <script src="shopify.js"></script>
 <script src="site.js"></script>
+<script>
+  document.getElementById('affiliateForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('affiliateSubmit');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    fetch('https://formspree.io/f/mojodnnz', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(r) {
+      if (r.ok) {
+        document.getElementById('affiliateFields').style.display = 'none';
+        document.getElementById('affiliateSuccess').style.display = 'block';
+      } else {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    }).catch(function() {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    });
+  });
+</script>
 </body>
 </html>
