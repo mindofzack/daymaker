@@ -173,7 +173,7 @@
     }
 
     /* Success state */
-    .success-msg {
+    .success-msg, [data-fs-success] {
       display: none;
       text-align: center;
       padding: 32px 0 8px;
@@ -211,22 +211,26 @@
     <p class="subtitle">Fill out the form below and we'll be in touch if it's a good fit.</p>
     <hr class="divider" />
 
-    <form id="affiliate-form" action="https://formspree.io/f/mojodnnz" method="POST">
+    <p data-fs-error style="color:#ff6a52;font-size:13px;margin-bottom:12px;display:none"></p>
+
+    <form id="affiliate-form">
 
       <div class="field">
         <label for="name">Full Name</label>
-        <input type="text" id="name" name="Full Name" placeholder="Jane Smith" required />
+        <input type="text" id="name" name="Full Name" placeholder="Jane Smith" required data-fs-field />
+        <span data-fs-error="Full Name" style="color:#ff6a52;font-size:12px;margin-top:4px;display:block"></span>
       </div>
 
       <div class="field">
         <label for="email">Email</label>
-        <input type="email" id="email" name="Email" placeholder="jane@example.com" required />
+        <input type="email" id="email" name="Email" placeholder="jane@example.com" required data-fs-field />
+        <span data-fs-error="Email" style="color:#ff6a52;font-size:12px;margin-top:4px;display:block"></span>
       </div>
 
       <div class="field">
         <label for="platform">Platform</label>
         <div class="select-wrapper">
-          <select id="platform" name="Platform" required>
+          <select id="platform" name="Platform" required data-fs-field>
             <option value="" disabled selected>Select your platform</option>
             <option value="Instagram">Instagram</option>
             <option value="TikTok">TikTok</option>
@@ -238,24 +242,24 @@
 
       <div class="field">
         <label for="handle">Handle / Username</label>
-        <input type="text" id="handle" name="Handle / Username" placeholder="@yourhandle" required />
+        <input type="text" id="handle" name="Handle / Username" placeholder="@yourhandle" required data-fs-field />
       </div>
 
       <div class="field">
         <label for="audience">Approximate Audience Size</label>
-        <input type="number" id="audience" name="Approximate Audience Size" placeholder="e.g. 25000" min="0" required />
+        <input type="number" id="audience" name="Approximate Audience Size" placeholder="e.g. 25000" min="0" required data-fs-field />
       </div>
 
       <div class="field">
         <label for="why">Why do you want to partner with DayMaker?</label>
-        <textarea id="why" name="Why Partner With DayMaker" placeholder="Tell us about yourself, your content, and why you'd be a great fit..." required></textarea>
+        <textarea id="why" name="Why Partner With DayMaker" placeholder="Tell us about yourself, your content, and why you'd be a great fit..." required data-fs-field></textarea>
       </div>
 
-      <button type="submit" class="submit-btn">Submit Application →</button>
+      <button type="submit" class="submit-btn" data-fs-submit-btn>Submit Application →</button>
       <p class="footer-note">We review all applications within 3–5 business days.</p>
     </form>
 
-    <div class="success-msg" id="success-msg">
+    <div class="success-msg" data-fs-success>
       <div class="check">✓</div>
       <h2>Application received!</h2>
       <p>Thanks for applying. We'll review your submission and reach out within 3–5 business days.</p>
@@ -263,30 +267,9 @@
   </div>
 
   <script>
-    const form = document.getElementById('affiliate-form');
-    const successMsg = document.getElementById('success-msg');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('.submit-btn');
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
-
-      const data = new FormData(form);
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        form.style.display = 'none';
-        successMsg.style.display = 'block';
-      } else {
-        btn.textContent = 'Something went wrong — try again';
-        btn.disabled = false;
-      }
-    });
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#affiliate-form', formId: 'mojodnnz' });
   </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
