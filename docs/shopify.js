@@ -159,9 +159,19 @@
   }
 
   function wireCheckout() {
-    var btn = document.querySelector('.drawer__foot .btn--primary');
-    if (btn) btn.onclick = function () { if (checkoutUrl) window.location.href = checkoutUrl; };
+    /* kept for legacy call-sites — real wiring is now event delegation below */
   }
+
+  /* ---- Global checkout click handler (event delegation) ---- */
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-shopify-checkout]')) {
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      } else {
+        console.warn('[DayMaker] Shopify checkout not ready yet.');
+      }
+    }
+  });
 
   /* ---- DOM helpers ----------------------------------------- */
   function openDrawer() {
@@ -180,8 +190,9 @@
 
   /* ---- Expose API for site.js ----------------------------- */
   window.ShopifyCart = {
-    addToCart: addToCart,
-    isReady:   function () { return !!client && !!checkoutId; },
+    addToCart:      addToCart,
+    isReady:        function () { return !!client && !!checkoutId; },
+    getCheckoutUrl: function () { return checkoutUrl; },
   };
 
   /* ---- Auto-boot ------------------------------------------ */

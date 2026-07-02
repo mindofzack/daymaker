@@ -123,7 +123,7 @@
           <div class="stepper" data-stepper><button data-minus aria-label="Decrease">–</button><span data-val>1</span><button data-plus aria-label="Increase">+</button></div>
           <button class="btn btn--primary btn--block" data-add-to-cart data-id="electrolytes" data-name="Electrolytes + Caffeine" data-price="30" data-img="assets/product-electrolytes.webp" data-qty-target=".stepper [data-val]">Add to cart</button>
         </div>
-        <button class="btn btn--punch btn--block" style="margin-top:12px">Buy it now</button>
+        <button class="btn btn--punch btn--block" style="margin-top:12px" data-shopify-checkout>Buy it now</button>
 
         <div class="assure">
           <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Sugar-free · clean ingredients · no BS</div>
@@ -244,7 +244,7 @@
 <aside class="drawer" id="cartDrawer" aria-label="Cart">
   <div class="drawer__head"><h3>Your cart</h3><button class="nav__icon" data-close-cart aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
   <div class="drawer__body sl-scroll" id="cartBody"></div>
-  <div class="drawer__foot"><div style="display:flex;justify-content:space-between;margin-bottom:14px"><span style="color:var(--text-secondary)">Subtotal</span><b id="cartTotal" style="font-size:18px">$0.00</b></div><button class="btn btn--primary btn--block">Checkout</button></div>
+  <div class="drawer__foot"><div style="display:flex;justify-content:space-between;margin-bottom:14px"><span style="color:var(--text-secondary)">Subtotal</span><b id="cartTotal" style="font-size:18px">$0.00</b></div><button class="btn btn--primary btn--block" data-shopify-checkout>Checkout</button></div>
 </aside>
 <div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="product.html">Electrolytes</a><a href="shop.html">Shop</a><a href="about.html">Our Story</a><a href="affiliates.html">Affiliates</a></div>
 <div class="toast" id="toast"><span class="ok">✓</span><span class="toast__msg">Added to cart</span></div>
