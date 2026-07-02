@@ -105,7 +105,7 @@ section { position: relative; }
 }
 .nav .wrap { display: flex; align-items: center; gap: 28px; }
 .nav__logo { height: 30px; display: flex; align-items: center; }
-.nav__logo img { height: 22px; width: auto; }
+.nav__logo img { height: 30px; width: auto; }
 .nav__links { display: flex; align-items: center; gap: 4px; margin-left: 14px; }
 .nav__links a {
   position: relative; padding: 8px 14px; font-size: 14px; font-weight: 600;
