@@ -235,6 +235,32 @@
     document.querySelectorAll('[data-open-cart]').forEach(function (b) { b.addEventListener('click', openDrawer); });
     document.querySelectorAll('[data-close-cart]').forEach(function (b) { b.addEventListener('click', closeDrawer); });
 
+    // Checkout buttons — use Shopify SDK URL when ready, else build cart URL directly
+    var SHOPIFY_VARIANT_IDS = {
+      'electrolytes': '52682588127508',
+      'sub':          '52682593141012',
+    };
+    var SHOPIFY_STORE = 'daymaker-7110.myshopify.com';
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('[data-shopify-checkout]')) return;
+      // Prefer SDK URL if Shopify initialised it
+      var sdkUrl = window.ShopifyCart && window.ShopifyCart.getCheckoutUrl && window.ShopifyCart.getCheckoutUrl();
+      if (sdkUrl) { window.location.href = sdkUrl; return; }
+      // Fallback: build a direct Shopify cart URL from local cart
+      var cart = getCart();
+      var pairs = cart.map(function (item) {
+        var vid = SHOPIFY_VARIANT_IDS[item.id];
+        return vid ? vid + ':' + item.qty : null;
+      }).filter(Boolean);
+      if (!pairs.length) {
+        // Nothing in cart — go straight to product page on Shopify
+        window.location.href = 'https://' + SHOPIFY_STORE + '/products/electrolytes-caffeine';
+        return;
+      }
+      window.location.href = 'https://' + SHOPIFY_STORE + '/cart/' + pairs.join(',');
+    });
+
     // quantity steppers
     document.querySelectorAll('[data-stepper]').forEach(function (s) {
       var val = s.querySelector('[data-val]');

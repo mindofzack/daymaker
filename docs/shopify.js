@@ -54,7 +54,11 @@
     }
   }
 
-  function create() { client.checkout.create().then(resume); }
+  function create() {
+    client.checkout.create()
+      .then(resume)
+      .catch(function (err) { console.error('[DayMaker] Shopify checkout.create failed:', err); });
+  }
 
   function resume(co) {
     checkoutId  = co.id;
