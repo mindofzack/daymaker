@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="site.css" />
 <style>
   /* ---- Hero (home) ---- */
-  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden;
-          padding-top: 40px; }
+  .hero { position: relative; min-height: calc(100vh - 108px); display: flex; align-items: center;
+          overflow: hidden; padding-top: 52px; padding-bottom: 56px; }
   .hero__bg { position: absolute; inset: 0; z-index: 0; }
   .hero__bg .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .55; }
   .orb-a { width: 560px; height: 560px; top: -120px; left: -80px; background: radial-gradient(circle, var(--aqua), transparent 65%); animation: drift1 24s ease-in-out infinite; }
@@ -195,6 +195,31 @@
     100% { opacity: 0; transform: translate(26px,-62px) scale(1.5); }
   }
   @media (prefers-reduced-motion: reduce) { .hero__diver { display: none; } }
+
+  /* ---- Hero word cycler: fills the band above the headline ---- */
+  .hero__cycler { display: flex; flex-direction: column; gap: 9px; margin-bottom: 30px; }
+  .hero__cycler .lead { font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--text-tertiary); }
+  .hero__cycler .rot { position: relative; height: 1.16em;
+    font-family: var(--font-title); font-weight: 900; letter-spacing: -.02em; line-height: 1.16;
+    font-size: clamp(23px, 2.7vw, 35px); }
+  .hero__cycler .hcw { position: absolute; inset: 0; display: flex; align-items: center; gap: .26em;
+    white-space: nowrap; opacity: 0; clip-path: inset(0 0 100% 0); }
+  .hero__cycler .hcw b { font-weight: 900; color: var(--aqua); }
+  .hero__cycler .hcw.is-in  { animation: hcwIn .62s var(--ease-spring) forwards; }
+  .hero__cycler .hcw.is-out { animation: hcwOut .46s var(--ease-spring) forwards; }
+  @keyframes hcwIn  { from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(14px); }
+                      to   { opacity: 1; clip-path: inset(0 0 0 0);    transform: translateY(0); } }
+  @keyframes hcwOut { from { opacity: 1; clip-path: inset(0 0 0 0);    transform: translateY(0); }
+                      to   { opacity: 0; clip-path: inset(100% 0 0 0); transform: translateY(-14px); } }
+  .hero__cycler .rule { height: 2px; width: 132px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--aqua), transparent); }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__cycler .hcw { animation: none !important; }
+    .hero__cycler .hcw:first-child { opacity: 1; clip-path: none; }
+  }
+  @media (max-width: 940px) { .hero__cycler { margin-bottom: 20px; } }
 </style>
 </head>
 <body>
@@ -360,9 +385,20 @@
   </div>
   <div class="wrap">
     <div class="hero__copy">
+      <div class="hero__cycler" data-hero-cycler>
+        <span class="lead">Built for</span>
+        <span class="rot">
+          <span class="hcw is-in">Late <b>nights.</b></span>
+          <span class="hcw">Early <b>mornings.</b></span>
+          <span class="hcw">Long <b>shifts.</b></span>
+          <span class="hcw">Hard <b>workouts.</b></span>
+          <span class="hcw">Hot <b>days.</b></span>
+        </span>
+        <span class="rule"></span>
+      </div>
       <span class="eyebrow">Electrolytes + Caffeine</span>
       <h1>Hydration <span class="l2 grad-aqua">Meets Energy.</span></h1>
-      <p class="hero__sub lede">Late nights, early mornings, workouts, long days. Stop juggling sports drinks, energy drinks, and coffee. <strong style="color:var(--text-base)">One scoop does it all.</strong></p>
+      <p class="hero__sub lede">Stop juggling sports drinks, energy drinks, and coffee. <strong style="color:var(--text-base)">One scoop does it all.</strong></p>
       <div class="hero__cta">
         <a href="product.html" class="btn btn--primary btn--lg">Shop DayMaker — $30</a>
         <a href="about.html" class="btn btn--ghost btn--lg">Our story</a>
@@ -649,6 +685,31 @@
 <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
 <script src="shopify.js"></script>
 <script src="site.js"></script>
+<script>
+/* Hero word cycler */
+(function () {
+  var host = document.querySelector('[data-hero-cycler] .rot');
+  if (!host) return;
+  var words = Array.prototype.slice.call(host.querySelectorAll('.hcw'));
+  if (words.length < 2) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    words[0].style.opacity = 1; words[0].style.clipPath = 'none'; return;
+  }
+  var i = 0, timer = null;
+  function step() {
+    var cur = words[i], nxt = words[(i + 1) % words.length];
+    cur.classList.remove('is-in'); cur.classList.add('is-out');
+    nxt.classList.remove('is-out'); nxt.classList.add('is-in');
+    i = (i + 1) % words.length;
+  }
+  function start() { if (!timer) timer = setInterval(step, 2600); }
+  function stop()  { if (timer) { clearInterval(timer); timer = null; } }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); })
+      .observe(document.querySelector('.hero'));
+  } else { start(); }
+})();
+</script>
 <script>
 /* Ambient diver: roams the whole hero on randomized passes through depth. */
 (function () {
