@@ -153,6 +153,48 @@
     .hero__product { min-height: 46vh; margin-top: 10px; order: -1; }
     .hero__tub { width: min(300px, 64%); }
   }
+
+  /* ---- Ambient scuba diver roaming the hero ---- */
+  .hero__diver { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none;
+    will-change: transform, opacity; }
+  .hdv { display: block; width: 176px; height: auto; overflow: visible;
+    animation: hdvSurge calc(var(--kick, 1.5s) / 2) ease-in-out infinite; }
+  @keyframes hdvSurge { 0%,100% { transform: translateX(0); } 42% { transform: translateX(2.1px); } 74% { transform: translateX(.5px); } }
+
+  .hdv .hip   { transform-box: view-box; transform-origin: 84px 46px; }
+  .hdv .knee  { transform-box: view-box; transform-origin: 60px 46px; }
+  .hdv .ankle { transform-box: view-box; transform-origin: 35px 46px; }
+  .hdv .shldr { transform-box: view-box; transform-origin: 115px 49px; }
+  .hdv .elbow { transform-box: view-box; transform-origin: 126px 54px; }
+  .hdv .kick .hip   { animation: hdvHipA var(--kick,1.5s) ease-in-out infinite; }
+  .hdv .kick .knee  { animation: hdvKneeA var(--kick,1.5s) ease-in-out infinite; animation-delay: calc(var(--kick,1.5s) * .17); }
+  .hdv .kick .ankle { animation: hdvAnkA var(--kick,1.5s) ease-in-out infinite; animation-delay: calc(var(--kick,1.5s) * .30); }
+  .hdv .kick.b .hip   { animation-name: hdvHipB; }
+  .hdv .kick.b .knee  { animation-name: hdvKneeB; }
+  .hdv .kick.b .ankle { animation-name: hdvAnkB; }
+  @keyframes hdvHipA  { 0%,100% { transform: rotate(-13deg); } 50% { transform: rotate(12deg); } }
+  @keyframes hdvHipB  { 0%,100% { transform: rotate(12deg); }  50% { transform: rotate(-13deg); } }
+  @keyframes hdvKneeA { 0%,100% { transform: rotate(9deg); }   50% { transform: rotate(-11deg); } }
+  @keyframes hdvKneeB { 0%,100% { transform: rotate(-11deg); } 50% { transform: rotate(9deg); } }
+  @keyframes hdvAnkA  { 0%,100% { transform: rotate(13deg); }  50% { transform: rotate(-15deg); } }
+  @keyframes hdvAnkB  { 0%,100% { transform: rotate(-15deg); } 50% { transform: rotate(13deg); } }
+  .hdv .armswing .shldr { animation: hdvArmS 4.6s ease-in-out infinite; }
+  .hdv .armswing .elbow { animation: hdvArmE 4.6s ease-in-out infinite -1.1s; }
+  @keyframes hdvArmS { 0%,100% { transform: rotate(-1.8deg); } 50% { transform: rotate(2.2deg); } }
+  @keyframes hdvArmE { 0%,100% { transform: rotate(2.2deg); }  50% { transform: rotate(-2.6deg); } }
+  .hdv .torsoflex { transform-box: view-box; transform-origin: 100px 46px; animation: hdvFlex 3.1s ease-in-out infinite; }
+  @keyframes hdvFlex { 0%,100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.4deg); } }
+  .hdv .breath circle { opacity: 0; animation: hdvRise 4.4s ease-out infinite; }
+  .hdv .breath circle:nth-child(2) { animation-delay: .13s; }
+  .hdv .breath circle:nth-child(3) { animation-delay: .27s; }
+  .hdv .breath circle:nth-child(4) { animation-delay: .42s; }
+  .hdv .breath circle:nth-child(5) { animation-delay: .58s; }
+  @keyframes hdvRise {
+    0%   { opacity: 0; transform: translate(0,0) scale(.35); }
+    8%   { opacity: .62; }
+    100% { opacity: 0; transform: translate(26px,-62px) scale(1.5); }
+  }
+  @media (prefers-reduced-motion: reduce) { .hero__diver { display: none; } }
 </style>
 </head>
 <body>
@@ -198,6 +240,124 @@
     <div class="orb orb-c"></div>
   </div>
   <div class="hero__grid"></div>
+  <div class="hero__diver" id="heroDiver" aria-hidden="true">
+    <svg class="hdv" viewBox="0 0 150 92" aria-label="Scuba diver">
+      <defs>
+        <linearGradient id="hdv-wet" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3f7f75"/><stop offset=".38" stop-color="#173430"/><stop offset="1" stop-color="#070e0f"/>
+        </linearGradient>
+        <linearGradient id="hdv-wetFar" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1a3a35"/><stop offset="1" stop-color="#050b0c"/>
+        </linearGradient>
+        <linearGradient id="hdv-steel" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#c3d4d5"/><stop offset=".45" stop-color="#71868a"/><stop offset="1" stop-color="#243437"/>
+        </linearGradient>
+        <linearGradient id="hdv-glass" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#a8f5e2"/><stop offset=".55" stop-color="#2b7f79"/><stop offset="1" stop-color="#0d2829"/>
+        </linearGradient>
+        <linearGradient id="hdv-fin" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2f665f"/><stop offset="1" stop-color="#0a1617"/>
+        </linearGradient>
+        <linearGradient id="hdv-finFar" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1b403b"/><stop offset="1" stop-color="#060e0f"/>
+        </linearGradient>
+      </defs>
+  
+      <!-- ================= FAR LEG (held a few degrees off so the two never coincide) ================= -->
+      <g class="kick b" opacity=".58" transform="rotate(-17 84 46)">
+        <g class="hip">
+          <path fill="url(#hdv-wetFar)" d="M85 41.4 C 77 40.8, 68 40.9, 60 41.6 L 60 48.6 C 68 49.3, 77 49.4, 85 48.8 Z"/>
+          <g class="knee">
+            <path fill="url(#hdv-wetFar)" d="M60.5 42 C 53 41.6, 45 41.7, 38 42.3 L 38 48 C 45 48.6, 53 48.6, 60.5 48.2 Z"/>
+            <g class="ankle">
+              <path fill="#0b1a1b" d="M38.5 42.4 C 35.6 42.3, 33.4 42.5, 31.6 43 L 31.6 47.4 C 33.4 47.9, 35.6 48.1, 38.5 48 Z"/>
+              <path fill="url(#hdv-finFar)" d="M32.4 42.6 C 26 41.3, 18 40.9, 12 42.7 C 10.6 44.6, 10.6 46.4, 12 48.3 C 18 49.7, 26 49.3, 32.4 47.9 Z"/>
+              <path fill="none" stroke="#2FA89E" stroke-width=".45" opacity=".24" d="M29 43.8 C 23 43.2, 17 43.4, 13.2 44.5 M29 46.9 C 23 47.4, 17 47.4, 13.2 46.6"/>
+            </g>
+          </g>
+        </g>
+      </g>
+  
+      <!-- ================= TANK, BCD, TORSO, HEAD ================= -->
+      <g class="torsoflex">
+        <!-- tank: overlaps the back line by 3u so it reads as strapped on, not floating -->
+        <rect x="90" y="28.4" width="27" height="12.6" rx="6.2" fill="url(#hdv-steel)"/>
+        <rect x="93" y="30.4" width="21" height="2.2" rx="1.1" fill="#e6f4f3" opacity=".34"/>
+        <path d="M116.4 31.6 h4.4 a2.1 2.1 0 0 1 0 4.2 h-4.4 Z" fill="#93a6a9"/>
+        <circle cx="122.4" cy="33.7" r="3.1" fill="#61767a"/><circle cx="122.4" cy="33.7" r="1.3" fill="#233436"/>
+  
+        <!-- hoses: primary to the mouthpiece, console down to the gauge -->
+        <path fill="none" stroke="#0d1b1c" stroke-width="2.3" stroke-linecap="round" d="M123.6 36 C 130 37.4, 133 43, 133.6 48"/>
+        <path fill="none" stroke="#0d1b1c" stroke-width="2" stroke-linecap="round" d="M120.6 36.8 C 118 46, 110 54, 100 57.4"/>
+        <rect x="93.5" y="55" width="9" height="6.4" rx="1.9" fill="#1c3133" transform="rotate(-18 98 58)"/>
+        <circle cx="97.8" cy="57.8" r="2" fill="#8ff0da" opacity=".5"/>
+  
+        <!-- torso -->
+        <path fill="url(#hdv-wet)" d="M84 41
+          C 92 38.4, 104 37.4, 114 38.2
+          C 118.4 38.8, 120.6 41, 121 44.2
+          C 121 48.2, 119 51.6, 114 53.2
+          C 104 55.6, 92 54.6, 84 51.6
+          C 80.8 50, 80.8 42.6, 84 41 Z"/>
+        <!-- BCD wing over the shoulders -->
+        <path fill="#14625f" opacity=".42" d="M90 39.6 C 99 37.8, 110 37.6, 118 39.4 C 120 40.2, 121 42, 121.2 43.6 C 116 41.4, 108 40.4, 99 40.6 C 94.6 40.8, 91.6 41.2, 89.6 41.8 Z"/>
+        <!-- cam bands holding the tank + waist strap -->
+        <path fill="none" stroke="#081213" stroke-width="2.4" d="M97 29 C 95.6 38, 95.6 47, 97 54"/>
+        <path fill="none" stroke="#081213" stroke-width="2.4" d="M109 28.8 C 107.6 38, 107.6 47, 109 53.6"/>
+        <path fill="none" stroke="#081213" stroke-width="1.8" opacity=".8" d="M86 43 C 88 46, 88 48, 86 51"/>
+        <!-- weight belt -->
+        <path fill="#081213" d="M84.6 42 C 86.4 45.6, 86.4 47.6, 84.6 51 L 81.6 49.6 L 81.6 43.4 Z"/>
+        <!-- rim light off the surface -->
+        <path fill="none" stroke="#63dcc6" stroke-width="1.1" opacity=".5" d="M86 40.6 C 94 38.2, 104 37.4, 113 38"/>
+  
+        <!-- head, hood, mask -->
+        <circle cx="128.6" cy="45.4" r="7.2" fill="url(#hdv-wet)"/>
+        <path fill="#081213" d="M122.6 40.4 C 126 37.8, 131.6 38, 134.4 40.6 L 133 42.8 C 130.6 41.2, 126.6 41.2, 124 42.6 Z"/>
+        <path fill="#0b1a1b" d="M133.2 41.4 L 141.6 41 A 3.1 3.1 0 0 1 141.6 50.4 L 133.2 50 Z"/>
+        <path fill="url(#hdv-glass)" d="M134.8 42.9 L 140.2 42.6 A 2 2 0 0 1 140.2 48.8 L 134.8 48.5 Z"/>
+        <path fill="#e0fcf4" opacity=".55" d="M135.6 43.7 L 138.2 43.5 L 136.4 46.4 L 135.1 46.5 Z"/>
+        <path fill="none" stroke="#081213" stroke-width="2.2" d="M133.6 42 C 128.6 40.2, 124 40.8, 121.6 42.8"/>
+        <circle cx="135" cy="51.4" r="3" fill="#173430"/>
+      </g>
+  
+      <!-- ================= NEAR LEG ================= -->
+      <g class="kick" transform="rotate(9 84 46)">
+        <g class="hip">
+          <path fill="url(#hdv-wet)" d="M85.5 40.4 C 77 39.7, 68 39.9, 60 40.8 L 60 50.4 C 68 51.3, 77 51.4, 85.5 50.6 Z"/>
+          <g class="knee">
+            <path fill="url(#hdv-wet)" d="M60.5 41.4 C 53 41, 45 41.2, 38 41.9 L 38 49.4 C 45 50.1, 53 50.1, 60.5 49.6 Z"/>
+            <g class="ankle">
+              <path fill="#0f2426" d="M38.5 42 C 35.6 41.9, 33.4 42.1, 31.6 42.7 L 31.6 48.5 C 33.4 49.1, 35.6 49.3, 38.5 49.2 Z"/>
+              <path fill="url(#hdv-fin)" d="M32.4 42.2 C 25.6 40.7, 17 40.3, 10.4 42.4 C 8.8 44.6, 8.8 46.8, 10.4 49 C 17 50.8, 25.6 50.4, 32.4 48.8 Z"/>
+              <path fill="none" stroke="#48d0ba" stroke-width=".6" opacity=".5" d="M29 43.6 C 23 43, 16.4 43.2, 11.8 44.4 M29 47.6 C 23 48.2, 16.4 48.2, 11.8 47.2"/>
+              <path fill="none" stroke="#63dcc6" stroke-width=".8" opacity=".36" d="M31.6 42.5 C 25 41.1, 17 40.9, 11 42.8"/>
+            </g>
+          </g>
+        </g>
+      </g>
+  
+      <!-- ================= NEAR ARM, extended forward with the pennant ================= -->
+      <g class="armswing">
+        <g class="shldr">
+          <path fill="url(#hdv-wet)" d="M112 46.5 C 117 48.4, 121.5 50.6, 125.5 52.8 L 123.5 56.4 C 119 54.4, 114.5 52.2, 110 50 Z"/>
+          <g class="elbow">
+            <path fill="url(#hdv-wet)" d="M124 53 C 129 54.2, 134 55, 139 55.4 L 138.8 58.8 C 133.6 58.4, 128.4 57.6, 123 56.4 Z"/>
+            <rect x="130.5" y="53.4" width="5" height="5" rx="1.3" fill="#0a1718"/>
+            <rect x="131.6" y="54.5" width="2.8" height="2.8" rx=".6" fill="#8ff0da" opacity=".6"/>
+            <circle cx="141" cy="57" r="2.6" fill="#12282a"/>
+  </g>
+          </g>
+        </g>
+      </g>
+  
+      <!-- ================= EXHAUST ================= -->
+      <g class="breath" fill="#8ff0da">
+        <circle cx="132" cy="39" r="2.2"/><circle cx="129" cy="38" r="1.6"/>
+        <circle cx="134" cy="37" r="1.2"/><circle cx="127.6" cy="36.4" r="1.9"/>
+        <circle cx="131" cy="35.4" r="1"/>
+      </g>
+    </svg>
+  </div>
   <div class="wrap">
     <div class="hero__copy">
       <span class="eyebrow">Electrolytes + Caffeine</span>
@@ -489,5 +649,80 @@
 <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
 <script src="shopify.js"></script>
 <script src="site.js"></script>
+<script>
+/* Ambient diver: roams the whole hero on randomized passes through depth. */
+(function () {
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tank = document.querySelector('.hero');
+  var lane = document.getElementById('heroDiver');
+  if (!tank || !lane) return;
+  if (rm) { lane.style.display = 'none'; return; }
+  var svg = lane.querySelector('svg');
+
+  var visible = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(tank);
+  }
+
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  var P = null, t = 0, last = null, rest = 0;
+  function newPass() {
+    P = {
+      dir:  Math.random() > 0.5 ? 1 : -1,
+      y0:   6 + Math.random() * 66,
+      y1:   6 + Math.random() * 66,
+      z0:   0.35 + Math.random() * 1.5,
+      z1:   0.35 + Math.random() * 1.5,
+      zBow: (Math.random() - 0.5) * 1.7,
+      yAmp: 6 + Math.random() * 14,
+      yFrq: 1.6 + Math.random() * 1.6,
+      dur:  22 + Math.random() * 18
+    };
+    t = 0; rest = 0;
+  }
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (last === null) last = now;
+    var dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    if (!visible || !P) return;
+    if (rest > 0) { rest -= dt; if (rest <= 0) newPass(); return; }
+    t += dt / P.dur;
+    if (t >= 1) { t = 1; rest = 1.5 + Math.random() * 5; }
+
+    var W = tank.clientWidth, H = tank.clientHeight;
+    var size = clamp(W * 0.14, 110, 176);
+    svg.style.width = size + 'px';
+
+    var z  = clamp(lerp(P.z0, P.z1, t) + Math.sin(t * Math.PI) * P.zBow, 0.22, 2.1);
+    var sc = 1 / (0.55 + z);
+    var tr = lerp(-0.25, 1.25, t);
+    var x  = (P.dir > 0 ? tr : 1 - tr) * W;
+    var y  = (lerp(P.y0, P.y1, t) / 100) * H + Math.sin(t * Math.PI * P.yFrq * 2) * P.yAmp;
+
+    var dz = (P.z1 - P.z0) + Math.cos(t * Math.PI) * Math.PI * P.zBow;
+    var dy = (P.y1 - P.y0) / 100 * H + Math.cos(t * Math.PI * P.yFrq * 2) * P.yAmp * P.yFrq * 2;
+    var yaw   = clamp(-dz * 17, -34, 34) * P.dir;
+    var roll  = clamp(dy * 0.14, -12, 12) * P.dir;
+    var pitch = clamp(dy * 0.08, -8, 8);
+    var d01   = clamp((z - 0.22) / 1.88, 0, 1);
+    var base  = P.dir > 0 ? 0 : 180;
+
+    lane.style.transform =
+      'perspective(900px) translate3d(' + (x - size * sc / 2) + 'px,' + y + 'px,0)' +
+      ' rotateY(' + (base + yaw) + 'deg) rotateZ(' + roll + 'deg) rotateX(' + pitch + 'deg)' +
+      ' scale(' + sc.toFixed(3) + ')';
+    lane.style.opacity = ((0.92 - d01 * 0.42) * 0.9).toFixed(3);
+    lane.style.filter  = 'blur(' + (d01 * 0.9).toFixed(2) + 'px) saturate(1.06)';
+    svg.style.setProperty('--kick', '1.5s');
+  }
+
+  newPass();
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
