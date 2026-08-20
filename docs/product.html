@@ -54,13 +54,34 @@
   .ing h4 { margin: 0; font-size: 17px; font-weight: 800; }
   .ing p { margin: 4px 0 0; font-size: 14px; color: var(--text-secondary); }
 
-  .compare { width: 100%; border-collapse: collapse; }
+  .compare { width: 100%; border-collapse: collapse; min-width: 620px; }
   .compare th, .compare td { padding: 18px 16px; text-align: center; border-bottom: 1px solid var(--border); }
   .compare th:first-child, .compare td:first-child { text-align: left; font-weight: 700; color: var(--text-secondary); }
   .compare thead th { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-tertiary); }
   .compare .us { background: var(--accent-soft); color: var(--aqua); font-weight: 800; border-radius: 8px; }
   .compare .yes { color: var(--aqua); } .compare .no { color: var(--text-tertiary); }
   .compare thead th.us-h { color: var(--aqua); }
+
+  .compare td.no { color: var(--text-tertiary); font-weight: 600; }
+  .compare td.us { font-weight: 800; }
+
+  @media (max-width: 760px){
+    .compare { min-width: 540px; }
+    .compare th:first-child, .compare td:first-child {
+      position: sticky; left: 0; z-index: 2; background: var(--surface-1);
+      box-shadow: 1px 0 0 var(--border); font-size: 14px; padding-right: 12px; }
+    .compare th, .compare td { padding: 14px 10px; font-size: 14px; }
+  }
+  .compare-hint { display: none; font-size: 12px; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--text-tertiary); text-align: right; margin: 0 0 6px; }
+  @media (max-width: 760px){ .compare-hint { display: block; } }
+
+  .reviews-empty { text-align: center; padding: clamp(36px, 5vw, 60px) 28px; }
+  .reviews-empty .mark { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--accent-soft); color: var(--aqua); }
+  .reviews-empty .mark svg { width: 26px; height: 26px; }
+  .reviews-empty h3 { font-size: 22px; font-weight: 800; margin: 0 0 10px; }
+  .reviews-empty p { color: var(--text-secondary); line-height: 1.65; margin: 0 auto; max-width: 480px; }
 </style>
 </head>
 <body>
@@ -107,7 +128,7 @@
       <div class="buy" id="buyBox">
         <span class="tag-pill punch">Fruit Punch · Bestseller</span>
         <h1>Electrolytes + Caffeine</h1>
-        <div class="stars-row"><span class="s">★★★★★</span> 4.9 · 248 reviews</div>
+        <div class="stars-row">30 servings · Sugar-free · Made in the USA</div>
         <div class="price-row"><span class="price">$30</span><s>$38</s><span class="tag-pill aqua">Save 21%</span></div>
         <p class="lede" style="margin-top:18px">A premium hydration formula that replenishes essential electrolytes while delivering clean, natural energy — so you stay balanced and perform at your best all day.</p>
 
@@ -171,17 +192,38 @@
       <span class="eyebrow" style="justify-content:center" data-reveal>One scoop replaces three</span>
       <h2 class="section-title" data-reveal style="--d:80ms">Why carry a cabinet?</h2>
     </div>
+    <p class="compare-hint">Swipe to compare →</p>
     <div class="card" style="padding:8px 24px;overflow-x:auto" data-reveal="scale">
       <table class="compare">
         <thead><tr><th></th><th>Sports drink</th><th>Energy drink</th><th>Coffee</th><th class="us-h">DayMaker</th></tr></thead>
         <tbody>
-          <tr><td>Electrolytes</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td><td class="us">✓</td></tr>
-          <tr><td>Clean caffeine</td><td class="no">✕</td><td class="no">✕</td><td class="yes">✓</td><td class="us">✓</td></tr>
-          <tr><td>Sugar-free</td><td class="no">✕</td><td class="no">✕</td><td class="yes">✓</td><td class="us">✓</td></tr>
-          <tr><td>No jitters / crash</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td><td class="us">✓</td></tr>
-          <tr><td>Recovery support</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td><td class="us">✓</td></tr>
+          <tr><td>Full electrolyte profile</td><td class="no">Partial</td><td class="no">✕</td><td class="no">✕</td><td class="us">✓</td></tr>
+          <tr><td>Added sugar</td><td class="no">~34g</td><td class="no">~27g</td><td class="yes">0g</td><td class="us">0g</td></tr>
+          <tr><td>Caffeine source</td><td class="no">None</td><td class="no">Synthetic</td><td class="yes">Natural</td><td class="us">Natural</td></tr>
+          <tr><td>Artificial dyes</td><td class="no">Common</td><td class="no">Common</td><td class="yes">None</td><td class="us">None</td></tr>
+          <tr><td>Recovery minerals</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td><td class="us">✓</td></tr>
+          <tr><td>Packs flat for travel</td><td class="no">✕</td><td class="no">✕</td><td class="no">✕</td><td class="us">✓</td></tr>
         </tbody>
       </table>
+    </div>
+    <p class="muted" style="text-align:center;margin-top:18px;font-size:13px">Category comparisons based on typical nutrition panels for each drink type. Sugar and caffeine content vary by brand and serving size — always check the label.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="wrap" style="max-width:820px">
+    <div class="section-head center" style="margin-bottom:32px">
+      <span class="eyebrow punch" style="justify-content:center" data-reveal>Reviews</span>
+      <h2 class="section-title" data-reveal style="--d:80ms">Real reviews. Nothing invented.</h2>
+    </div>
+    <!-- Verified-purchase review widget (Judge.me / Shopify Reviews) mounts here. -->
+    <div id="review-widget" data-review-mount>
+      <div class="reviews-empty card" data-reveal="scale">
+        <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>No reviews yet</h3>
+        <p>We just launched, so there's nothing here to show you — and we're not going to invent any. Every review on this page will come from a verified purchase, good or bad.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -233,7 +275,6 @@
     <img src="assets/product-electrolytes.webp" alt="" />
     <div><div class="nm">Electrolytes + Caffeine</div><div class="pr">Fruit Punch · $30</div></div>
     <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
-      <span class="stars-row" style="margin:0"><span class="s">★★★★★</span></span>
       <button class="btn btn--primary" data-add-to-cart data-id="electrolytes" data-name="Electrolytes + Caffeine" data-price="30" data-img="assets/product-electrolytes.webp" data-qty="1">Add to cart — $30</button>
     </div>
   </div>
